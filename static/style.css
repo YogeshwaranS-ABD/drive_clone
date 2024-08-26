@@ -1,0 +1,65 @@
+:root{
+/*	colour variables are defined here*/
+}
+
+*{
+	margin: auto;
+	font-family: verdana;
+}
+
+header>nav{
+	display: flex;
+	justify-content: space-between;
+	padding: 1% 2%;
+	background-color: #ddf;
+}
+header>nav>*{
+	margin: 0;
+}
+header>nav>figure{
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+}
+header>nav>figure>img{
+	width: 15%;
+	margin: 0;
+}
+header>nav>figure>h1{
+	margin: 0;
+	font-size: 2.5rem;
+}
+header>nav>.nav-links{
+	display: flex;
+	gap: 1rem;
+	justify-content: space-between;
+	align-items: center;
+	width: 20%;
+	font-size: 1.15rem;
+}
+header .btns{
+	padding: 5%;
+	text-decoration: none;
+	color: white;
+	background-color: #05f;
+	border-radius: 7.5px;
+	text-align: center;
+}
+header .btns:nth-last-child(1){
+	color: #05f;
+	background-color: #FFF;
+	border: 1px solid #05f;
+}
+
+
+main>.banner{
+	color: white;
+	display: flex;
+	justify-content: space-between;
+	padding: 3%;
+	background: radial-gradient(circle, rgba(0,0,57,1) 0%, rgba(0,1,200,0.9) 86%, rgba(1,2,105,1) 100%);
+}
+main>.banner>.txt>h1{
+	font-size: 2.7rem;
+	padding-bottom: 1%;
+}
