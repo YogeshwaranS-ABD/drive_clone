@@ -13,8 +13,12 @@
         <script src="./static/header.js"></script>
 
         <main>
-            <form method="post" style="padding: 4%;">
+            <form method="post" style="padding: 3%;">
                 <h1>Sign In</h1>
+                <div>
+                    <p>Full Name</p>
+                    <input type="text" name="fullname" required>
+                </div>
                 <div>
                     <p>Username</p>
                     <input type="text" name="username" required>
@@ -23,13 +27,13 @@
                     <p>Email</p>
                     <input type="email" name="email" required>
                 </div>
-                <div id="pass">
+                <div>
                     <p>Password</p>
-                    <input type="password" name="password" required>
-                </div id="rpass">
+                    <input id="pass" type="password" name="password" required>
+                </div>
                 <div>
                     <p>Re-type Password</p>
-                    <input type="password" name="rpassword" required>
+                    <input id="rpass" type="password" name="rpassword" required>
                 </div>
                 <div class="buttons">
                     <button class="btns" type="reset" >Reset </button>
