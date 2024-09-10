@@ -1,7 +1,14 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, flash, send_from_directory
+from os import listdir, mkdir, path
+from werkzeug.utils import secure_filename
+
 from data import *
 
 app = Flask(__name__)
+
+UPLOAD_FOLDER = './storage/'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.add_url_rule("/uploads/<name>", endpoint="download_file", build_only=True)
 
 @app.route('/')
 def home():
@@ -18,7 +25,7 @@ def signin():
         passwd = data['password']
         flag=user_check(name, passwd)
         if flag[0]==1:
-            return redirect(url_for('dashboard',user=flag[1]))
+            return redirect(url_for('dashboard',user=flag[1:]))
         return render_template('failed.html', content=flag)
 
 @app.route('/signup', methods=['GET','POST'])
@@ -44,9 +51,47 @@ def change_password():
         data  = request.form
         return f"the data given is {data}"
 
-@app.route('/<user>/dashboard')
+@app.route('/<user>', methods=['GET','POST'])
 def dashboard(user):
-    return f'<h1> Welcome {user} </h1>'
+    user = eval(user)
+    file_list=0
+    if request.method=='GET':
+        print(user[-1])
+        if user[-1] in listdir(f'./storage/'):
+            file_list = listdir(f'./storage/{user[-1]}')
+        else:
+            mkdir(f'./storage/{user[-1]}')
+            file_list=0
+        return render_template('dashboard.html',user=user[:], file_list=file_list, msg=0)
+    if request.method=='POST':
+
+        file = request.files['file']
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(url_for('dashboard',user=user))
+        if file.filename == '':
+            return render_template(
+                        'dashboard.html',
+                        user=user[:],
+                        file_list=file_list,
+                        msg=1)
+        else:
+            name = secure_filename(file.filename)
+            file.save(path.join(app.config['UPLOAD_FOLDER'],user[-1],name))
+            if file_list!=[]:
+                file_list=[]
+            file_list.append(name)
+            return render_template(
+                        'dashboard.html',
+                        user=user[:],
+                        file_list=file_list,
+                        msg=2)
+        return redirect(url_for('dashboard',user=user))
+
+@app.route('/uploads/<name>')
+def download_file(name):
+    username = request.args.get('username')
+    return send_from_directory(path.join(app.config['UPLOAD_FOLDER'],username), name, as_attachment=True)
 
 if __name__=='__main__':
     app.run(debug=True)

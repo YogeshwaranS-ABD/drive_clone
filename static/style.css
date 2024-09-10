@@ -182,3 +182,62 @@ form .buttons{
 	display: flex;
 	justify-content: space-evenly;
 }
+
+.dashboard{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.dashboard>.left{
+	margin: 0;
+	width: 32%;
+}
+.dashboard>.left>form{
+	padding: 45% 3%
+}
+
+.dashboard>.right{
+	width: 68%;
+	font-size: 1.5rem;
+}
+.dashboard>.right>h1,
+.dashboard>.right>h2{
+	text-align: center;
+	padding: 3%;
+}
+.dashboard>.right>div{
+	height: 400px;
+	overflow-y: scroll;
+	padding: 0% 10%;
+}
+.dashboard table{
+	border-spacing: 0 1.2rem;
+}
+.dashboard table tr{
+	border-radius: 10px;
+	box-shadow:  2px 2px 8px #999aba;
+}
+.dashboard table tr:nth-child(odd){
+	background-color: ;
+}
+.dashboard table td{
+	width: 30%;
+	padding: 2%;
+}
+.dashboard table td:nth-child(2){
+	text-align: right;
+}
+.dashboard>.right table a{
+	text-decoration: none;
+	color: black;
+	transition: 0.2s ease-in;
+}
+.dashboard>.right table a:hover{
+	color: blue;
+}
+
+.card{
+	width: 50%;
+	margin: 1% auto;
+}

@@ -41,7 +41,7 @@ def user_check(username, password):
 	elif users[0][1]!=encrypt(password):
 		return "The password you enterd was incorrect. Try again"
 	else:
-		return [1, users[0][-1].split()[0]]
+		return [1, users[0][-1].split()[0], users[0][0]]
 
 why = {
 	1: ["Smart Storage with Advanced Compression","Maximize your storage efficiency! Flexi Cloud uses cutting-edge compression technology to shrink your file sizes, enabling you to store more data without compromising quality. Enjoy reduced storage costs and a more organized cloud environment."],
