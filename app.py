@@ -3,6 +3,7 @@ from os import listdir, mkdir, path
 from werkzeug.utils import secure_filename
 
 from data import *
+from utils import *
 
 app = Flask(__name__)
 
@@ -54,22 +55,24 @@ def change_password():
 @app.route('/<user>', methods=['GET','POST'])
 def dashboard(user):
     user = eval(user)
-    file_list=0
+    file_list=[]
+    
     if request.method=='GET':
         print(user[-1])
         if user[-1] in listdir(f'./storage/'):
             file_list = listdir(f'./storage/{user[-1]}')
         else:
             mkdir(f'./storage/{user[-1]}')
-            file_list=0
+            file_list=[]
         return render_template('dashboard.html',user=user[:], file_list=file_list, msg=0)
+    
     if request.method=='POST':
-
+        file_list = get_files(user[-1])
         file = request.files['file']
         if 'file' not in request.files:
             flash('No file part')
             return redirect(url_for('dashboard',user=user))
-        if file.filename == '':
+        elif file.filename == '':
             return render_template(
                         'dashboard.html',
                         user=user[:],
@@ -78,8 +81,10 @@ def dashboard(user):
         else:
             name = secure_filename(file.filename)
             file.save(path.join(app.config['UPLOAD_FOLDER'],user[-1],name))
-            if file_list!=[]:
-                file_list=[]
+            # if type(file_list)!=type([]):
+            #     file_list=[name]
+            # else:
+            #     file_list.append(name)
             file_list.append(name)
             return render_template(
                         'dashboard.html',
