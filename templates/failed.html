@@ -20,7 +20,19 @@
         <script src="./static/header.js"></script>
 
         <main>
-            <h1>{{content}}</h1>
+        	{%if content==0%}
+            <h1>Registerd Successfully. Please Login again</h1>
+        	{%elif content==1%}
+        	<h1>Password and Re-Type password didn't match. Please try again</h1>
+        	{%elif content==2%}
+        	<h1>The User is already registerd. Contact Admin to channge or get a new password!</h1>
+        	{%elif content==3%}
+        	<h1>Password Changed Successfully, Please login again</h1>
+        	{%elif content==4%}
+        	<h1>Either Username and Email are not a match as per our record or New Password and Confirm New password didn't match.
+        		<a href="/change-password"> Please try again </a>
+        	</h1>
+        	{%endif%}
         </main>
 
 	</body>

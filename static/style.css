@@ -66,6 +66,13 @@ header>nav>.nav-links{
 	color: #05f;
 	background-color: #FFF;
 }
+.nav-links>form{
+	padding: 0;
+	background: inherit;
+}
+.nav-links>form>.btns{
+	padding: 11%;
+}
 
 main>.banner{
 	color: white;

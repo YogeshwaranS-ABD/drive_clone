@@ -22,13 +22,19 @@ def update_db(data): # data = [username, email, password-encrypted]
 def is_unique_user(user,email):
 	with sql.connect('./static/flexi.db') as conn:
 		cur = conn.cursor()
-		data = cur.execute(f'select username, email from users where username="{user}" or email="{email}"')
+		data = cur.execute(f'select username, email from users where username="{user}" and email="{email}"')
 		data = data.fetchall()
 		cur.close()
 		if len(data)!=0:
 			return 0
 		else:
 			return 1
+
+def change_passwd(user,passwd):
+	with sql.connect('./static/flexi.db') as conn:
+		cur = conn.cursor()
+		data = cur.execute(f'update users set password="{encrypt(passwd)}" where username="{user}"')
+		cur.close()
 
 def user_check(username, password):
 	conn = sql.connect('./static/flexi.db')
@@ -39,7 +45,8 @@ def user_check(username, password):
 	conn.close()
 	if len(users)==0:
 		return "The username is not registered with our records. Please Sign Up to use the service."
-	elif users[0][1]!=encrypt(password):
+
+	elif password and users[0][1]!=encrypt(password):
 		return "The password you enterd was incorrect. Try again"
 	else:
 		return [1, users[0][-1].split()[0], users[0][0]]
