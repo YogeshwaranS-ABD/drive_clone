@@ -1,7 +1,14 @@
 # drive_clone
 This is a fully functional google drive clone made with python flask
 
-# **Welcome to Flexi Cloud**
+You can sign-up to your dashboard.
+
+**Things Needed to Add:**
+1. Delete button to objects in the dashboard.
+2. Previews for files before downloading.
+3. Improvements in Session Management.
+
+<!-- # **Welcome to Flexi Cloud**
 
 ---
 
@@ -65,16 +72,6 @@ Join the growing community of users who trust Flexi Cloud for their storage need
 
 ---
 
-### **Contact Us**
-
-Got questions or need assistance? Our support team is here to help.
-
-- **Email**: support@flexicloud.com
-- **Phone**: +1-800-123-4567
-- **Live Chat**: Available on our website
-
----
-
 **Flexi Cloud** - **Efficiency. Speed. Security.**
 
-Discover the next level of cloud storage with Flexi Cloud today!
+Discover the next level of cloud storage with Flexi Cloud today! -->
